@@ -1,15 +1,7 @@
 <?php
-require('../vendor/autoload.php');
-
-
-# TODO: Creer un QueryBuilder
-# Ecrire une requête en chainant des methodes
-# Afficher la requête
-
 
 use App\MySQLQueryBuilder;
 
-// Inclure la classe MySQLQueryBuilder
 require('../vendor/autoload.php');
 
 // Créer une instance du QueryBuilder

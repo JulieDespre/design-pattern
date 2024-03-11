@@ -1,4 +1,7 @@
 <?php
+
+use app\Config;
+
 require('../vendor/autoload.php');
 
 
@@ -7,13 +10,13 @@ require('../vendor/autoload.php');
 # Récupérer une seconde instance de Config et vérifié que les deux instances sont identiques
 
 // renvoie une instance de Config
-$config = \app\Config::getInstanceConfig();
+$config = Config::getInstanceConfig();
 
 // Affiche une valeur contenu dans config.php
 echo $config->getParameter('db');
 
 // renvoie une seconde instance de Config
-$config2 = \App\Config::getInstanceConfig();
+$config2 = Config::getInstanceConfig();
 
 // vérifie que les deux instances sont identiques
 if ($config === $config2) {

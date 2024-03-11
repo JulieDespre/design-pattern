@@ -24,11 +24,11 @@ class UserMusicBandTest extends TestCase
 
         $band->detach($yves);
 
-        $band->addNewConcertDate('19/11/2027.', 'Bercy');
+        $band->addNewConcertDate('19/11/2027', 'Bercy'); // Correction : Supprimer le point à la fin de la date
 
-        $this->assertFalse($albert->isNotified());
+        $this->assertTrue($albert->isNotified());
         $this->assertTrue($michelle->isNotified());
-        $this->assertTrue($yves->isNotified());
+        $this->assertFalse($yves->isNotified());
     }
 
 }

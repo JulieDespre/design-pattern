@@ -6,14 +6,14 @@ class MySQLQueryBuilder implements QueryBuilderInterface {
     protected array $query;
     protected string $select;
     protected string $from;
-    protected string $where;
+    protected array $where;
     protected string $orderBy;
 
     public function __construct() {
         $this->query = [];
         $this->select = null;
         $this->from = null;
-        $this->where = null;
+        $this->where = [];
         $this->orderBy = null;
     }
 
@@ -32,14 +32,13 @@ class MySQLQueryBuilder implements QueryBuilderInterface {
         return $this;
     }
 
-    public function where(string $field, ?string $value = null, string $operator = '='): MySQLQueryBuilder {
-        if ($value !== null) {
-            $this->where = "WHERE $field $operator '$value'";
-        } else {
-            $this->where = "WHERE $field";
+    public function where(array $conditions, string $operator = 'AND'): MySQLQueryBuilder {
+        if (!empty($conditions)) {
+            $this->where[] = ['conditions' => $conditions, 'operator' => $operator];
         }
         return $this;
     }
+
 
     public function orderBy(string $field, string $order = 'ASC'): MySQLQueryBuilder {
         $this->orderBy = "ORDER BY $field $order";
@@ -58,9 +57,16 @@ class MySQLQueryBuilder implements QueryBuilderInterface {
             $query .= $this->from . ' ';
         }
 
-        if ($this->where !== null) {
-            $query .= $this->where . ' ';
+        if (!empty($this->where)) {
+            // Générer la clause WHERE en fonction des conditions
+            $whereConditions = [];
+            foreach ($this->where as $condition) {
+                $whereConditions[] = '(' . implode(' ' . $condition['operator'] . ' ', $condition['conditions']) . ')';
+            }
+            $query .= 'WHERE ' . implode(' ' . $condition['operator'] . ' ', $whereConditions) . ' ';
         }
+
+
 
         if ($this->orderBy !== null) {
             $query .= $this->orderBy . ' ';

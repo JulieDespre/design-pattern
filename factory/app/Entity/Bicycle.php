@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class Bicycle {
+class Bicycle implements VehiculeInterface{
     private $costPerKm;
     private $fuelType;
 

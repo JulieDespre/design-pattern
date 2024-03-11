@@ -10,11 +10,11 @@ class VehiculeFactory
 {
     public static function createVehicle($type, $costPerKm, $fuelType) {
         switch ($type) {
-            case 'Bicycle':
+            case 'Velo':
                 return new Bicycle($costPerKm, $fuelType);
-            case 'Truck':
+            case 'Camion':
                 return new Truck($costPerKm, $fuelType);
-            case 'Car':
+            case 'Voiture':
                 return new Car($costPerKm, $fuelType);
             default:
                 throw new \InvalidArgumentException("Type de véhicule non valide : $type");

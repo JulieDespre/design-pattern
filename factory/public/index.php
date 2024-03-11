@@ -1,12 +1,15 @@
 <?php
-require('../vendor/autoload.php');
 
 use App\Factory\VehiculeFactory;
 
+require('../vendor/autoload.php');
+
+
+
 // Créez un véhicule à partir de la factory
 $car = VehiculeFactory::createVehicle('Voiture', 0.1, 'Essence');
-$truck = VehiculeFactory::createVehicle('MonsterTruck', 150, 'Diesel');
-$bicycle = VehiculeFactory::createVehicle('VeloDolly', 0, 'muscle');
+$truck = VehiculeFactory::createVehicle('Camion', 150, 'Diesel');
+$bicycle = VehiculeFactory::createVehicle('Velo', 0, 'muscle');
 
 if ($car instanceof \App\Entity\VehiculeInterface) {
     echo "La voiture est une instance de VehiculeInterface. \n";

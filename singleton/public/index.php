@@ -1,6 +1,7 @@
 <?php
 
-use app\Config;
+
+use App\Config;
 
 require('../vendor/autoload.php');
 
